@@ -3,5 +3,5 @@
 @section('title', 'Page Title')
 
 @section('content')
-    <p>This is my body content.</p>
+    <p class="mt-5">This is a AutoService management system.</p>
 @endsection

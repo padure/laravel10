@@ -7,7 +7,7 @@
         <h4>Mechanics</h4>
     </div>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <a href="{{ route('mechanics.create') }}" class="btn btn-sm btn-dark mb-3">Add</a>
             <table class="table table-bordered">
                 <thead>
@@ -20,7 +20,7 @@
                 <tbody>
                     @forelse($mechanics as $mechanic)
                         <tr>
-                            <td>{{ $loop->iterate }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $mechanic->name }}</td>
                             <td>
                                 <a href="" class="bt btn-sm btn-warning">Edit</a>
@@ -36,3 +36,24 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@10') }}"></script>
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', function () {
+            const sweetAlertContainer = document.getElementById('sweet-alert-container');
+            const successMessage = "{{ session('success') }}";
+            if (successMessage) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: successMessage,
+                });
+            }
+        });
+    </script>
+@endpush
+
+@push('styles')
+
+@endpush

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row">
-        <h4>Mechanics</h4>
+        <h4 class="mt-3">Mechanics</h4>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -24,7 +24,7 @@
                             <td>{{ $mechanic->name }}</td>
                             <td>
                                 <a href="{{ route('mechanics.edit', ['mechanic' => $mechanic->id]) }}"
-                                   class="bt btn-sm btn-warning">Edit</a>
+                                   class="btn btn-sm btn-warning text-white">Edit</a>
                             </td>
                         </tr>
                     @empty

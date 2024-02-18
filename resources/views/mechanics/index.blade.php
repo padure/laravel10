@@ -24,7 +24,13 @@
                             <td>{{ $mechanic->name }}</td>
                             <td>
                                 <a href="{{ route('mechanics.edit', ['mechanic' => $mechanic->id]) }}"
-                                   class="btn btn-sm btn-warning text-white">Edit</a>
+                                   class="btn btn-sm btn-outline-warning">
+                                    Edit
+                                </a>
+                                <button class="btn btn-outline-danger btn-sm delete-mechanic"
+                                        data-id="{{$mechanic->id}}">
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     @empty
@@ -42,8 +48,51 @@
 @push('scripts')
     <script type="module">
         document.addEventListener('DOMContentLoaded', function () {
-            const sweetAlertContainer = document.getElementById('sweet-alert-container');
             const successMessage = "{{ session('success') }}";
+            const deleteButtons = document.querySelectorAll('.delete-mechanic');
+            if(deleteButtons){
+                [...deleteButtons].map( btn => {
+                   btn.addEventListener('click', () => {
+                        const id = btn.dataset.id;
+                        Swal.fire({
+                            title: 'Sunteti sigur?',
+                            text: "Doriti sa stergeti inregistrarea?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#000',
+                            confirmButtonText: 'Da, sterge',
+                            cancelButtonText: 'Nu, anuleaza'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                axios.delete(`/mechanics/${id}`)
+                                .then(function (response) {
+                                    if (response.data.success) {
+                                        Swal.fire({
+                                            title: 'Succes!',
+                                            text: response.data.message,
+                                            icon: 'success',
+                                            confirmButtonText: 'OK',
+                                            confirmButtonColor: '#d33'
+                                        }).then(function () {
+                                            location.reload();
+                                        });
+                                    }
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                    Swal.fire({
+                                        title: 'Eroare!',
+                                        text: 'A aparut o eroare la stergerea inregistrarii.',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    });
+                                });
+                            }
+                        });
+                   });
+                });
+            }
             if (successMessage) {
                 Swal.fire({
                     icon: 'success',

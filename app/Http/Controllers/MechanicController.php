@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Session;
 class MechanicController extends Controller
 {
     public function index():View{
-        $mechanics = Mechanic::paginate(Mechanic::NUMBER_PER_PAGE)->fragment('mechanics');
+        $mechanics = Mechanic::paginate(Mechanic::NUMBER_PER_PAGE);
+//            ->fragment('mechanics');
         return view('mechanics.index', [
             'mechanics' => $mechanics
         ]);
@@ -36,5 +37,13 @@ class MechanicController extends Controller
         $mechanic->update($request->all());
         Session::flash('success', 'Datele au fost editate cu succes!');
         return redirect()->route('mechanics.index');
+    }
+
+    public function destroy(Mechanic $mechanic) {
+        $mechanic->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Inregistrarea a fost stearsa cu succes!'
+        ]);
     }
 }

@@ -27,4 +27,14 @@ class MechanicController extends Controller
         Session::flash('success', 'Datele au fost salvate cu succes!');
         return redirect()->route('mechanics.index');
     }
+
+    public function edit (Mechanic $mechanic){
+        return view('mechanics.edit', ['mechanic' => $mechanic]);
+    }
+
+    public function update(Mechanic $mechanic, Request $request){
+        $mechanic->update($request->all());
+        Session::flash('success', 'Datele au fost editate cu succes!');
+        return redirect()->route('mechanics.index');
+    }
 }

@@ -23,7 +23,8 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $mechanic->name }}</td>
                             <td>
-                                <a href="" class="bt btn-sm btn-warning">Edit</a>
+                                <a href="{{ route('mechanics.edit', ['mechanic' => $mechanic->id]) }}"
+                                   class="bt btn-sm btn-warning">Edit</a>
                             </td>
                         </tr>
                     @empty

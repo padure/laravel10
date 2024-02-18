@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Owner extends Model
 {
     use HasFactory;
+    public const NUMBER_PER_PAGE = 10;
     protected $fillable = [
         'name',
         'car_id'

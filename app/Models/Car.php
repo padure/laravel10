@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use HasFactory;
+
+    public const NUMBER_PER_PAGE = 10;
     protected $fillable = [
         'model',
         'mechanic_id'

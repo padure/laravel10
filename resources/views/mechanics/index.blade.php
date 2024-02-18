@@ -14,6 +14,7 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th>Cars</th>
                         <th>Options</th>
                     </tr>
                 </thead>
@@ -22,6 +23,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $mechanic->name }}</td>
+                            <td>{{ $mechanic->cars()->count()?$mechanic->cars()->count():"No cars" }}</td>
                             <td>
                                 <a href="{{ route('mechanics.edit', ['mechanic' => $mechanic->id]) }}"
                                    class="btn btn-sm btn-outline-warning">

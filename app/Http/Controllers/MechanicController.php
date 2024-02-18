@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Session;
 class MechanicController extends Controller
 {
     public function index():View{
+        $mechanics = Mechanic::paginate(Mechanic::NUMBER_PER_PAGE)->fragment('mechanics');
         return view('mechanics.index', [
-            'mechanics' => Mechanic::paginate(Mechanic::NUMBER_PER_PAGE)->fragment('mechanics')
+            'mechanics' => $mechanics
         ]);
     }
 

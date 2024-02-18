@@ -33,7 +33,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {{ $mechanics->links() }}
+            {!! $mechanics->links('partials.paginate') !!}
         </div>
     </div>
 @endsection

@@ -13,7 +13,7 @@ class MechanicController extends Controller
 {
     public function index():View{
         return view('mechanics.index', [
-            'mechanics' => Mechanic::all()
+            'mechanics' => Mechanic::paginate(Mechanic::NUMBER_PER_PAGE)->fragment('mechanics')
         ]);
     }
 

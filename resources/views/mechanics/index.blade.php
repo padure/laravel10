@@ -33,6 +33,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {{ $mechanics->links() }}
         </div>
     </div>
 @endsection

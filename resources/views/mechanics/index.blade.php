@@ -38,7 +38,6 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@10') }}"></script>
     <script type="module">
         document.addEventListener('DOMContentLoaded', function () {
             const sweetAlertContainer = document.getElementById('sweet-alert-container');
